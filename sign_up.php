@@ -13,6 +13,10 @@
 	</ul>
 
 <?php
+
+error_reporting(E_ALL);
+	inclued ("/db_connect.php");
+
 if (isset($_POST['submit'])){
 	$firstname =  $_POST['firstname'];
 	$surname =  $_POST['surname'];
@@ -20,6 +24,7 @@ if (isset($_POST['submit'])){
 	$email =  $_POST['email'];
 	$password =  $_POST['password'];
 	$confirmpassword =  $_POST['confirmpassword'];	
+
 	validateFields($firstname, $surname, $age, $email, $password, $confirmpassword);
 }
 
@@ -57,13 +62,13 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 		$issueState = true;
 	}
 
-	if (strlen($password && strlen($confirmpassword)) <= 8){
+	if (strlen($password) <= 8 || strlen($confirmpassword) <= 8){
 		$issue = $issue . " " . "<p class=\"issues_text\"> The passwords must be more than 8 characters! <br/> </p>";
 		$issueState = true;
 	}
 
 
-	if($age < 12 || $age > 130 || isnumeric($age)){
+	if($age < 12 || $age > 130 || !is_numeric($age)){
 		$issue = $issue . " " . "<p class=\"issues_text\"> The age is invalid! <br/> </p>";
 		$issuestate = true;
 	}
@@ -88,18 +93,9 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 }
 
 function addUser($firstname, $surname, $age, $email, $password){
-	$host = "localhost";
-	$dbname = "daniel_DB";
-	$user = "root";
-	$pass = "Passw0rd!";
 
-	try{
-	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	} catch(PDOException $e) {
-    echo 'ERROR: ' . $e->getMessage();
-	}
-    echo 'Connected to Database<br/>';
+
+	$dbh = new db_connect();
 
 	$sql = "INSERT INTO users (firstname, surname, age) 
 			VALUES (:firstname, :surname, :age)";
@@ -109,7 +105,6 @@ function addUser($firstname, $surname, $age, $email, $password){
     'surname' => $_POST['surname'],
     'age' => $_POST['age'],
 	]);
-	var_dump($_POST);
 }
 
 
