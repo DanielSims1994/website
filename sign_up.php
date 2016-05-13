@@ -91,16 +91,15 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 }
 
 function addUser(){
- 	include ("db_connect.php");
+	include ("db_connect.php");
 	$sql = "INSERT INTO users (firstname, surname, age) 
 			VALUES (:firstname, :surname, :age)";
 
 	$dbh->prepare($sql)->execute([
-    'firstname' => $_POST['firstname'],
-    'surname' => $_POST['surname'],
-    'age' => $_POST['age'],
+	'firstname' => $_POST['firstname'],
+	'surname' => $_POST['surname'],
+	'age' => $_POST['age'],
 	]);
-
 }
 
 
