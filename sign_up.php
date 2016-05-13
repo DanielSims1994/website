@@ -14,9 +14,6 @@
 
 <?php
 
-error_reporting(E_ALL);
-	inclued ("/db_connect.php");
-
 if (isset($_POST['submit'])){
 	$firstname =  $_POST['firstname'];
 	$surname =  $_POST['surname'];
@@ -82,21 +79,19 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 	if ($issuestate == true){
 		echo $issue;
 	} else {
-		addUser($firstname, $surname, $age, $email, $password);
+		addUser();
 		echo "
             <script type=\"text/javascript\">
            		alert (\"User succesfully added!\");
             </script>
         ";
+        header( 'Location: http://localhost/website/index.php' );
 	}
 
 }
 
-function addUser($firstname, $surname, $age, $email, $password){
-
-
-	$dbh = new db_connect();
-
+function addUser(){
+ 	include ("db_connect.php");
 	$sql = "INSERT INTO users (firstname, surname, age) 
 			VALUES (:firstname, :surname, :age)";
 
@@ -105,6 +100,7 @@ function addUser($firstname, $surname, $age, $email, $password){
     'surname' => $_POST['surname'],
     'age' => $_POST['age'],
 	]);
+
 }
 
 

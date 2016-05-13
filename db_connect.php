@@ -1,7 +1,5 @@
 <?php
 
-class db_connect{
-	function connect(){
 	$host = "localhost";
 	$dbname = "daniel_DB";
 	$user = "root";
@@ -13,7 +11,5 @@ class db_connect{
 	} catch(PDOException $e) {
    	 echo 'ERROR: ' . $e->getMessage();
 	}
-    echo 'Connected to Database<br/>';
-}
-}
+
 ?>
