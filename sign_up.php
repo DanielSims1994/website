@@ -3,8 +3,14 @@
 	<head>
 	  	<meta charset="utf-8">
 	  	<title>Daniel Sims</title>
-	  	<link rel="stylesheet" href="style.css">
+	  	<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
+
+	<ul>
+	  <li><a class="active" href="index.php">Home</a></li>
+ 	  <li class="sign_up_in"><a href="sign_in.php">Log in!</a></li>
+	  <li class="sign_up_in"><a href="sign_up.php">Sign up!</a></li>
+	</ul>
 
 <?php
 if (isset($_POST['submit'])){
@@ -35,7 +41,7 @@ function validateFields($firstname, $surname, $age, $email, $password, $confirmp
 	}
 
 	if($invalid == true){
-		echo "<p> Please fill in all options!. </p>";
+		echo "<p  class=\"issues_text\"> Please fill in all options!. </p>";
 	} else {
 		validateInput($firstname, $surname, $age, $email, $password, $confirmpassword);
 	}
@@ -43,28 +49,27 @@ function validateFields($firstname, $surname, $age, $email, $password, $confirmp
 }
 
 function validateInput($firstname, $surname, $age, $email, $password, $confirmpassword){
-	$fine = "Everything was fine! <br />";
-	$issue = "The following issue(s) were found - ";
+	$issue = "";
 	$issueState = false;
 
 	if($password != $confirmpassword){
-		$issue = $issue . " " . "<p> The passwords don't match!.<br/> </p>";
+		$issue = $issue . " " . "<p class=\"issues_text\"> The passwords don't match!<br/> </p>";
 		$issueState = true;
 	}
 
 	if (strlen($password && strlen($confirmpassword)) <= 8){
-		$issue = $issue . " " . "<p> The passwords must be more than 8 characters!.<br/> </p>";
+		$issue = $issue . " " . "<p class=\"issues_text\"> The passwords must be more than 8 characters! <br/> </p>";
 		$issueState = true;
 	}
 
 
-	if($age < 12 || $age > 130){
-		$issue = $issue . " " . "<p> The age is either too young or fake!. <br/> </p>";
+	if($age < 12 || $age > 130 || isnumeric($age)){
+		$issue = $issue . " " . "<p class=\"issues_text\"> The age is invalid! <br/> </p>";
 		$issuestate = true;
 	}
 
 	if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-  		$issue = $issue . " " . "<p> Email addres isn't valid!. <br/> </p>";
+  		$issue = $issue . " " . "<p class=\"issues_text\"> Email addres isn't valid! <br/> </p>";
   		$issuestate = true;
 	} 
 
@@ -72,7 +77,6 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 	if ($issuestate == true){
 		echo $issue;
 	} else {
-		echo $fine;
 		addUser($firstname, $surname, $age, $email, $password);
 		echo "
             <script type=\"text/javascript\">
@@ -87,19 +91,25 @@ function addUser($firstname, $surname, $age, $email, $password){
 	$host = "localhost";
 	$dbname = "daniel_DB";
 	$user = "root";
-	$pass = "Moody123";
+	$pass = "Passw0rd!";
 
-
+	try{
 	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // <== add this line
+	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch(PDOException $e) {
+    echo 'ERROR: ' . $e->getMessage();
+	}
     echo 'Connected to Database<br/>';
-    
-	$sql = "INSERT INTO users (firstname, surname, age) VALUES (:firstname, :surname, :age)";
+
+	$sql = "INSERT INTO users (firstname, surname, age) 
+			VALUES (:firstname, :surname, :age)";
+
 	$dbh->prepare($sql)->execute([
     'firstname' => $_POST['firstname'],
     'surname' => $_POST['surname'],
     'age' => $_POST['age'],
 	]);
+	var_dump($_POST);
 }
 
 
@@ -112,7 +122,7 @@ function addUser($firstname, $surname, $age, $email, $password){
 	        <input type="text" name = "firstname" id="firstname" placeholder = "Firstname" value="<?php echo $_POST['firstname']; ?>"/> <br/> 
 	        <p> Surname </p>
 	        <input type="text" name = "surname" id="surname" placeholder = "Surname" value="<?php echo $_POST['surname']; ?>"/> <br />
-	        <p> Age </p>
+	        <p> Age (between 12 and 130) </p>
 	        <input type="text" name = "age" id="age" placeholder = "Age" value="<?php echo $_POST['age']; ?>"/> <br />
 	        <p> Email address </p>
 	        <input type="text" name = "email" id="email" placeholder = "Email address" value="<?php echo $_POST['email']; ?>"/>  <br />
