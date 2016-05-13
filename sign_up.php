@@ -80,26 +80,30 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 		echo $issue;
 	} else {
 		addUser();
-		echo "
-            <script type=\"text/javascript\">
-           		alert (\"User succesfully added!\");
-            </script>
-        ";
-        header( 'Location: http://localhost/website/index.php' );
+		echo "<script type=\"text/javascript\"> alert (\"Welcome!\"); </script>";
+		sleep(1);
+		after_Signup();
 	}
 
 }
 
 function addUser(){
 	include ("db_connect.php");
-	$sql = "INSERT INTO users (firstname, surname, age) 
-			VALUES (:firstname, :surname, :age)";
+
+	$sql = "INSERT INTO users (firstname, surname, age, email, password) 
+			VALUES (:firstname, :surname, :age, :email, :password)";
 
 	$dbh->prepare($sql)->execute([
 	'firstname' => $_POST['firstname'],
 	'surname' => $_POST['surname'],
 	'age' => $_POST['age'],
+	'email' => $_POST['email'],
+	'password' => $_POST['password'],
 	]);
+}
+
+function after_Signup(){
+    header( 'Location: http://localhost/website/index.php' );
 }
 
 
