@@ -80,8 +80,6 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 		echo $issue;
 	} else {
 		addUser();
-		echo "<script type=\"text/javascript\"> alert (\"Welcome!\"); </script>";
-		sleep(1);
 		after_Signup();
 	}
 
@@ -89,6 +87,9 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 
 function addUser(){
 	include ("db_connect.php");
+
+	$upass = md5(mysql_real_escape_string($_POST['password']));
+	echo $upass;
 
 	$sql = "INSERT INTO users (firstname, surname, age, email, password) 
 			VALUES (:firstname, :surname, :age, :email, :password)";
@@ -98,18 +99,18 @@ function addUser(){
 	'surname' => $_POST['surname'],
 	'age' => $_POST['age'],
 	'email' => $_POST['email'],
-	'password' => $_POST['password'],
+	'password' => $upass,
 	]);
 }
 
 function after_Signup(){
-    header( 'Location: http://localhost/website/index.php' );
+    //header( 'Location: http://localhost/website/index.php' );
 }
 
 
 ?>
 	<body>
-	<div id="sign_up_container">
+	<div class="sign_up_and_in_container">
 	    <form action="sign_up.php" method="post">
 	    	<h1> Sign up! </h1>
 	    	<p> First name </p>
