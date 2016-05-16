@@ -2,6 +2,8 @@
 html, body{
     margin:0;
     padding:0;
+    color: #333333;
+    font-family: Impact, Charcoal, sans-serif;
 }
 
 
@@ -49,22 +51,9 @@ li a:hover:not(.active) {
     color:red;
 }
 
-
-
-/*all*/
-
-.center_container{
-    margin:0;
-    padding:0;
-
-    background-color: #333;
-    opacity:0.7;
-    float:left;
-    margin-left:25%;
-    margin-top:5%;
-    width: 50%;
-    height: 500px;
-    border:3px solid black;
+#welcome_nav_name{
+    float:right;
+    color:white;
 }
 
 
@@ -73,21 +62,38 @@ li a:hover:not(.active) {
 
 /*account*/
 
-.account_overview_header{
-    text-align:center;
-    font-size:50px;
-    color:white;
-
-}
-
 
 #account_header{
+    margin-top:5%;
     text-align:center;
-    color:white;
-    text-decoration: underline;
+    font-size:40px;
 }
 
 #account_details{
-    color:white;
     margin-left:5%;
+}
+
+#account_details_table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 70%;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+#account_details_table td, #account_details_table th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#account_details_table tr:nth-child(even){background-color: #f2f2f2}
+
+#account_details_table tr:hover {background-color: #ddd;}
+
+#account_details_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
 }

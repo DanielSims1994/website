@@ -16,6 +16,11 @@
 	?>
 		<li class="sign_up_in"><a href="account.php"><?php echo $_SESSION['name']; ?></a></li>
 		<li class="sign_up_in"><a href="log_out.php">Log out</a></li>
+
+<?php 
+		} if($_SESSION ['status'] === 'Administrator'){
+?>
+		<li class="sign_up_in"><a href="users.php">Users</a></li>
 <?php } else if (!isset($_SESSION['email'])){ ?>
 		<li class="sign_up_in"><a href="sign_in.php">Log in</a></li>
 		<li class="sign_up_in"><a href="sign_up.php">Sign up</a></li>
