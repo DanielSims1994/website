@@ -13,7 +13,7 @@
 	session_start();
 	if(isset($_SESSION['email'])){ 
 	?>
-		<li class="sign_up_in"><a href="account.php">Account</a></li>
+		<li class="sign_up_in"><a href="account.php"><?php echo $_SESSION['name']; ?></a></li>
 		<li class="sign_up_in"><a href="log_out.php">Log out</a></li>
 <?php } else if (!isset($_SESSION['email'])){ ?>
 		<li class="sign_up_in"><a href="sign_in.php">Log in</a></li>
