@@ -1,8 +1,11 @@
+/*global*/
 html, body{
-        margin:0;
+    margin:0;
     padding:0;
 }
 
+
+/*navitagation*/
 ul {
     list-style-type: none;
     margin: 0;
@@ -44,4 +47,47 @@ li a:hover:not(.active) {
 .issues_text{
     text-align: center;
     color:red;
+}
+
+
+
+/*all*/
+
+.center_container{
+    margin:0;
+    padding:0;
+
+    background-color: #333;
+    opacity:0.7;
+    float:left;
+    margin-left:25%;
+    margin-top:5%;
+    width: 50%;
+    height: 500px;
+    border:3px solid black;
+}
+
+
+
+/*index*/
+
+/*account*/
+
+.account_overview_header{
+    text-align:center;
+    font-size:50px;
+    color:white;
+
+}
+
+
+#account_header{
+    text-align:center;
+    color:white;
+    text-decoration: underline;
+}
+
+#account_details{
+    color:white;
+    margin-left:5%;
 }

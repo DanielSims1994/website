@@ -8,15 +8,17 @@
 
 <ul>
 		<li><a class="active" href="index.php">Home</a></li>
+		<li><a href="order.php">Order</a></li>
 <?php
-session_start();
+	session_start();
 	if(isset($_SESSION['email'])){ 
 	?>
-		<li class="sign_up_in"><a href="log_out.php">Log out!</a></li>
-	<?php } else if (!isset($_SESSION['email'])){ ?>
-		<li class="sign_up_in"><a href="sign_in.php">Log in!</a></li>
-		<li class="sign_up_in"><a href="sign_up.php">Sign up!</a></li>
-	<?php } ?>
+		<li class="sign_up_in"><a href="account.php">Account</a></li>
+		<li class="sign_up_in"><a href="log_out.php">Log out</a></li>
+<?php } else if (!isset($_SESSION['email'])){ ?>
+		<li class="sign_up_in"><a href="sign_in.php">Log in</a></li>
+		<li class="sign_up_in"><a href="sign_up.php">Sign up</a></li>
+<?php } ?>
 </ul>
 
 <?php
@@ -94,27 +96,36 @@ function validateInput($firstname, $surname, $age, $email, $password, $confirmpa
 
 function addUser(){
 	include ("db_connect.php");
+	$defaultStatus = "User";
 
-	$upass = md5(mysql_real_escape_string($_POST['password']));
-	echo $upass;
-
-	$sql = "INSERT INTO users (firstname, surname, age, email, password) 
-			VALUES (:firstname, :surname, :age, :email, :password)";
+	$sql = "INSERT INTO users (firstname, surname, age, email, password, status) 
+			VALUES (:firstname, :surname, :age, :email, :password, :status)";
 
 	$dbh->prepare($sql)->execute([
 	'firstname' => $_POST['firstname'],
 	'surname' => $_POST['surname'],
 	'age' => $_POST['age'],
 	'email' => $_POST['email'],
-	'password' => $upass,
+	'password' => $_POST['password'],
+	'status' => $defaultStatus,
 	]);
-	after_Signup();
-}
 
-function after_Signup(){
-    header( 'Location: http://localhost/website/sign_in.php' );
-}
+	session_start();
+	$records = $dbh->prepare('SELECT email, password, firstname, surname, age, status FROM users WHERE email = :email');
+	$records->bindParam(':email', $email);
+	$records->execute();
+	$results = $records->fetch(PDO::FETCH_ASSOC);
 
+	$_SESSION['name'] = $results ['firstname'] . " " . $results['surname'];
+	$_SESSION['email'] = $results['email'];
+	$_SESSION['firstname'] = $results ['firstname'];
+	$_SESSION['surname'] = $results ['surname'];
+	$_SESSION['age'] = $results ['age'];
+	$_SESSION['status'] = $results ['status'];
+
+
+	header('Location: http://localhost/website/index.php');
+}
 
 ?>
 	<body>
