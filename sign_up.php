@@ -92,8 +92,10 @@ after_Signup();
 function addUser(){
 include ("db_connect.php");
 $defaultStatus = "User";
+
 $sql = "INSERT INTO users (firstname, surname, age, email, password, status) 
 VALUES (:firstname, :surname, :age, :email, :password, :status)";
+
 $dbh->prepare($sql)->execute([
 'firstname' => $_POST['firstname'],
 'surname' => $_POST['surname'],
