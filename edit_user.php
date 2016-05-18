@@ -86,9 +86,11 @@
 
 <?php 
     if(isset($_POST['submit'])):
-
-
-
+        $sql = "UPDATE users set firstname = :firstname WHERE id = :id";
+        $stmt = $dbh -> prepare($sql);
+        $stmt-> bindParam('firstname', $_POST['firstname']);
+        $stmt-> bindparam('id', $_POST['id']);
+        $stmt-> execute();
         header('Location: http://localhost/website/account.php');
     endif;
 ?>
