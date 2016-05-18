@@ -74,7 +74,7 @@ $records->execute();
         </th>
         <th> Age 
         </th>
-        <th> Account Type 
+        <th> Account Type +
         </th>
       </tr>
       <?php
@@ -83,6 +83,7 @@ while($results = $records->fetch(PDO::FETCH_ASSOC)){
       <tr>
         <td>
           <?php echo $results['id']; ?>
+          <input type="hidden" name="id" value="<?php echo $results['id']?>">
         </td>
         <td>
           <input type="text" name="firstname" value="<?php echo $results['firstname']?>">
@@ -112,14 +113,18 @@ while($results = $records->fetch(PDO::FETCH_ASSOC)){
 ?>
 </table>
 <?php } 
-var_dump($_POST);
+
 if(isset($_POST['submit'])){
     $update = $dbh->prepare('UPDATE users SET firstname = :firstname WHERE id = :id');
-    $update ->bindParam(':firstname', $_POST['firstname'], 'id', $_POST['id']);
+    $update ->bindParam(':firstname', $_POST['firstname'], 
+                        ':id', $_POST['id']);
     $update->execute();
+
+    header('Location: http://localhost/website/account.php');
+
 }
 ?>
-    <input type = "submit" name = "submit" id="update_button" value = "Update Users"/>
+<input type = "submit" name = "submit" id="update_button" value = "Update Users"/>
 </form>
 <br />
 </body>
