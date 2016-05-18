@@ -70,7 +70,7 @@
 		<div class = "buttons_in_features">
 			<form action = "http://localhost/website/add_user.php"> <input type = "submit" name = "submit" id="submit" value = "Add"/> </form>
 			<form action = "http://localhost/website/users.php"> <input type = "submit" name = "submit" id="submit" value = "View"/> </form>
-			<form action = "http://localhost/website/delete_user.php"> <input type = "submit" name = "submit" id="submit" value = "Delete"/> </form>
+			<form action = "http://localhost/website/edit_user.php"> <input type = "submit" name = "submit" id="submit" value = "Edit"/> </form>
 		</div>
 	</div>
 <?php
