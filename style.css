@@ -1,207 +1,169 @@
 /*global*/
 html, body{
-    margin:0;
-    padding:0;
-    color: #333333;
-    font-family: Impact, Charcoal, sans-serif;
+margin:0;
+padding:0;
+color: #333333;
+font-family: Impact, Charcoal, sans-serif;
 }
-
 .error_message{  
-    text-align:center;
-    font-size:50px;
-    margin-top:20%;
-    }
+text-align:center;
+font-size:50px;
+margin-top:20%;
+}
 /*navitagation*/
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #333;
 }
-
 li {
-    float: left;
+float: left;
 }
-
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
 }
-
 li a:hover:not(.active) {
-    background-color: #111;
+background-color: #111;
 }
-
 .active {
-    background-color: #4CAF50;
+background-color: #4CAF50;
 }
-
 .sign_up_in{
-    float:right;
+float:right;
 }
-
 .sign_up_and_in_container{
-    text-align:center;
+text-align:center;
 }
-
 .issues_text{
-    text-align: center;
-    color:red;
+text-align: center;
+color:red;
 }
-
 #welcome_nav_name{
-    float:right;
-    color:white;
+float:right;
+color:white;
 }
-
-
-
 /*index*/
-
 /*account*/
-
-
 #account_header{
-    margin-top:5%;
-    text-align:center;
-    font-size:40px;
+margin-top:5%;
+text-align:center;
+font-size:40px;
 }
-
 #account_details{
-    margin-left:5%;
+margin-left:5%;
 }
-
 #account_details_table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 70%;
-    margin-left:15%;
-    margin-right:15%;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+width: 70%;
+margin-left:15%;
+margin-right:15%;
 }
-
 #account_details_table td, #account_details_table th {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
+border: 1px solid #ddd;
+text-align: left;
+padding: 8px;
 }
-
 #account_details_table tr:nth-child(even){background-color: #f2f2f2}
-
 #account_details_table tr:hover {background-color: #ddd;}
-
 #account_details_table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #4CAF50;
-    color: white;
+padding-top: 12px;
+padding-bottom: 12px;
+background-color: #4CAF50;
+color: white;
 }
-
-
 #update_products{
-    margin:0;
-    padding:0;
-
-    float:left;
-    width:20%;
-    height:200px;
-    border: 4px solid #4CAF50;
-    margin-left:15%;
+margin:0;
+padding:0;
+float:left;
+width:20%;
+height:200px;
+border: 4px solid #4CAF50;
+margin-left:15%;
 }
-
 #update_account{
-    margin:0;
-    padding:0;
-
-    float:left;
-    width:20%;
-    height:200px;
-    border: 4px solid #4CAF50;
-    margin-left:4%;
+margin:0;
+padding:0;
+float:left;
+width:20%;
+height:200px;
+border: 4px solid #4CAF50;
+margin-left:4%;
 }
-
 #update_account_user{
-    margin:0;
-    padding:0;
-
-    float:left;
-    width:20%;
-    height:200px;
-    border: 4px solid #4CAF50;
-    margin-left:15%;
+margin:0;
+padding:0;
+float:left;
+width:20%;
+height:200px;
+border: 4px solid #4CAF50;
+margin-left:15%;
 }
-
 .features_header{
-    margin:0;
-    padding:0;
-    margin-left:5%;
-    margin-top:3%;
-    font-size:30px;
+margin:0;
+padding:0;
+margin-left:5%;
+margin-top:3%;
+font-size:30px;
 }
-
 .features_text{
-    margin:0;
-    padding:0;
-    margin:4%;
+margin:0;
+padding:0;
+margin:4%;
 }
-
-
-
 .buttons_in_features{
-    margin-left:4%;
+margin-left:4%;
 }
-
 /*order*/
-
 #item_add{
-    text-align:center;
-    margin:0;
-    padding:0;
-    width:100%;
+text-align:center;
+margin:0;
+padding:0;
+width:100%;
 }
-
 #order_table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 40%;
-    margin-left:30%;
-    margin-right:15%;
+font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+border-collapse: collapse;
+width: 40%;
+margin-left:30%;
+margin-right:15%;
 }
-
 #order_table  td, #order_table  th {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
+border: 1px solid #ddd;
+text-align: left;
+padding: 8px;
 }
-
 #order_table  tr:nth-child(even){background-color: #f2f2f2}
-
 #order_table  tr:hover {background-color: #ddd;}
-
 #order_table  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #4CAF50;
-    color: white;
+padding-top: 12px;
+padding-bottom: 12px;
+background-color: #4CAF50;
+color: white;
 }
-
 #order_button{
-    margin:0;
-    padding:0;
-    width: 5%;
+margin:0;
+padding:0;
+width: 5%;
 }
-
-
-
 /*add user */
 .field_wrapper{
-    margin-left:40%;
-    margin-top:5%;
-    width:20%;
-    border-radius:3em;
+margin-left:40%;
+margin-top:5%;
+width:20%;
+border-radius:3em;
+}
+/*update users */
+#update_button{
+margin:0;
+padding:0;
+margin-top:2%;
+margin-left:35%;
+width:30%;
 }
