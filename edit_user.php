@@ -44,6 +44,9 @@ if(isset($_SESSION['email'])){
       </li>
       <?php } ?>
     </ul>
+
+
+
     <?php
 session_start();
 if(!isset($_SESSION['email'])){
@@ -54,11 +57,15 @@ echo "<p class=\"error_message\"> You don't have the right privileges to view th
 include ("db_connect.php");
 $records = $dbh->prepare('SELECT * FROM users');
 $records->execute();
+
 ?>
     <h1 id="account_header"> Update Users 
     </h1>
+    <form action = "edit_user.php" method = "POST">
     <table id = "account_details_table">
       <tr>
+        <th> ID
+        </th>
         <th> Firstname 
         </th>
         <th> Surname 
@@ -74,6 +81,9 @@ $records->execute();
 while($results = $records->fetch(PDO::FETCH_ASSOC)){  
 ?>
       <tr>
+        <td>
+          <?php echo $results['id']; ?>
+        </td>
         <td>
           <input type="text" name="firstname" value="<?php echo $results['firstname']?>">
         </td>
@@ -102,14 +112,13 @@ while($results = $records->fetch(PDO::FETCH_ASSOC)){
 ?>
 </table>
 <?php } 
-
+var_dump($_POST);
 if(isset($_POST['submit'])){
-    $update = $dbh->prepare('UPDATE users SET firstname = $results["firstname"]');
+    $update = $dbh->prepare('UPDATE users SET firstname = :firstname WHERE id = :id');
+    $update ->bindParam(':firstname', $_POST['firstname'], 'id', $_POST['id']);
     $update->execute();
-    header('Location: http://localhost/website/users.php');
 }
 ?>
-<form action " edit_user.php" method = "POST">
     <input type = "submit" name = "submit" id="update_button" value = "Update Users"/>
 </form>
 <br />
