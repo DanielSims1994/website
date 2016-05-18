@@ -104,8 +104,9 @@ while($results = $records->fetch(PDO::FETCH_ASSOC)){
 <?php } 
 
 if(isset($_POST['submit'])){
-
-$sql = "UPDATE users SET firstname = $_POST['firstname']"
+    $update = $dbh->prepare('UPDATE users SET firstname = $results["firstname"]');
+    $update->execute();
+    header('Location: http://localhost/website/users.php');
 }
 ?>
 <form action " edit_user.php" method = "POST">
