@@ -7,19 +7,18 @@
 	</head>
 
 <ul>
-		<li><a class="active" href="index.php">Home</a></li>
-		<li><a href="order.php">Order</a></li>
+	<li><a class="active" href="index.php">Home</a></li>
+	<li><a href="order.php">Order</a></li>
 <?php
 	session_start();
 	if(isset($_SESSION['email'])){ 
 	?>
 		<li class="sign_up_in"><a href="account.php"><?php echo $_SESSION['name']; ?></a></li>
 		<li class="sign_up_in"><a href="log_out.php">Log out</a></li>
-
 <?php 
 		} if($_SESSION ['status'] === 'Administrator'){
 ?>
-		<li class="sign_up_in"><a href="users.php">Users</a></li>
+		<!-- admin features -->
 <?php } else if (!isset($_SESSION['email'])){ ?>
 		<li class="sign_up_in"><a href="sign_in.php">Log in</a></li>
 		<li class="sign_up_in"><a href="sign_up.php">Sign up</a></li>
@@ -136,7 +135,8 @@ function addUser(){
 	<body>
 	<div class="sign_up_and_in_container">
 	    <form action="sign_up.php" method="post">
-	    	<h1> Sign up! </h1>
+	    	<Fieldset class = "field_wrapper">
+	    	<h1 id="account_header"> Sign up </h1>
 	    	<p> First name </p>
 	        <input type="text" name = "firstname" id="firstname" placeholder = "Firstname" value="<?php echo $_POST['firstname']; ?>"/> <br/> 
 	        <p> Surname </p>
@@ -151,6 +151,7 @@ function addUser(){
 	        <input type="password" name = "confirmpassword" id="Confirm password" placeholder = "Confirm password" value="<?php echo $_POST['confirmpassword']; ?>"/> 
 	        <br /> <br />
 	        <input type = "submit" name = "submit" id="submit" value = "Join!"/><br />
+	        </Fieldset>
 	    </form>
 	</div>
 	</body>
